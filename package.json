@@ -1,0 +1,27 @@
+{
+  "name": "react-native-step-modal",
+  "version": "1.0.0",
+  "description": "React native modal with step indicator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manoj-makkuboy/react-native-step-modal.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "modal",
+    "step",
+    "indicator",
+    "carousal"
+  ],
+  "author": "manoj-makkuboy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manoj-makkuboy/react-native-step-modal/issues"
+  },
+  "homepage": "https://github.com/manoj-makkuboy/react-native-step-modal#readme"
+}
