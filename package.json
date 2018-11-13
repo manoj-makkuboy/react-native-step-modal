@@ -4,7 +4,8 @@
   "description": "React native modal with step indicator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/manoj-makkuboy/react-native-step-modal/issues"
   },
-  "homepage": "https://github.com/manoj-makkuboy/react-native-step-modal#readme"
+  "homepage": "https://github.com/manoj-makkuboy/react-native-step-modal#readme",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-native-modal": "^7.0.0",
+    "react-native-page-control": "^1.1.1"
+  },
+  "devDependencies": {}
 }
