@@ -1,4 +1,10 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Platform
+} from "react-native";
 import React, { Component } from "react";
 import Modal from "react-native-modal";
 
@@ -66,7 +72,7 @@ export default class StepModal extends Component {
         >
           <Text style={{ color: "grey", fontWeight: "bold", fontSize: 14 }}>
             {" "}
-            skip{" "}
+            Skip{" "}
           </Text>
         </TouchableOpacity>
       </View>
@@ -74,7 +80,7 @@ export default class StepModal extends Component {
   }
 
   isLastStep() {
-    return this.props.stepComponents.length -1 === this.state.currentPage;
+    return this.props.stepComponents.length - 1 === this.state.currentPage;
   }
 
   render() {
@@ -83,15 +89,20 @@ export default class StepModal extends Component {
     return (
       <View>
         <Modal isVisible={this.state.isVisible}>
-          <View style={customStyles.modal}>
-
+          <View
+            style={
+              Platform.OS === "android"
+                ? customStyles.modalAndroid
+                : customStyles.modalIOS
+            }
+          >
             <View
               style={{
                 marginTop: 17,
                 backgroundColor: "#ffffff",
                 marginLeft: 10,
                 marginRight: 10,
-                height: 100
+                height: "90%"
               }}
             >
               {stepComponents[this.state.currentPage]}
@@ -100,11 +111,11 @@ export default class StepModal extends Component {
                 numberOfPages={stepComponents.length}
                 currentPage={this.state.currentPage}
                 hidesForSinglePage
-                pageIndicatorTintColor="gray"
-                currentPageIndicatorTintColor="green"
-                indicatorStyle={{ borderRadius: 5 }}
+                pageIndicatorTintColor="#d3d3d3"
+                currentPageIndicatorTintColor="#60BCA5"
+                indicatorStyle={{ borderRadius: 7 }}
                 currentIndicatorStyle={{ borderRadius: 5 }}
-                indicatorSize={{ width: 8, height: 8 }}
+                indicatorSize={{ width: 13, height: 13 }}
                 onPageIndicatorPress={this.onItemTap}
               />
             </View>
@@ -251,9 +262,16 @@ const customStyles = StyleSheet.create({
     textAlign: "left",
     marginLeft: 15
   },
-  modal: {
+  modalIOS: {
     backgroundColor: "#ffffff",
     borderRadius: 8,
-    paddingBottom: 10
+    paddingBottom: 10,
+    height: "60%"
+  },
+  modalAndroid: {
+    backgroundColor: "#ffffff",
+    borderRadius: 8,
+    paddingBottom: 10,
+    height: "80%"
   }
 });
