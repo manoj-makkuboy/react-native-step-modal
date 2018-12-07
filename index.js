@@ -51,7 +51,7 @@ export default class StepModal extends Component {
         >
           <Text style={{ color: "#60bca5", fontWeight: "bold", fontSize: 14 }}>
             {" "}
-            Finsh{" "}
+            Finish{" "}
           </Text>
         </TouchableOpacity>
       </View>
