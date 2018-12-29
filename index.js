@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import React, { Component } from "react";
 import Modal from "react-native-modal";
+import Carousel from "react-native-looped-carousel";
 
 import PageControl from "react-native-page-control";
 
@@ -17,6 +18,7 @@ export default class StepModal extends Component {
   }
 
   _renderNextButton() {
+    const nextIndex = this.state.currentPage + 1;
     return (
       <View
         style={{
@@ -25,7 +27,8 @@ export default class StepModal extends Component {
       >
         <TouchableOpacity
           onPress={() => {
-            this.setState({ currentPage: this.state.currentPage + 1 });
+            this.setState({ currentPage: nextIndex });
+            this.carousel.animateToPage(nextIndex);
           }}
         >
           <Text style={{ color: "#60bca5", fontWeight: "bold", fontSize: 14 }}>
@@ -83,6 +86,10 @@ export default class StepModal extends Component {
     return this.props.stepComponents.length - 1 === this.state.currentPage;
   }
 
+  changeIndex = (index) => {
+    this.setState({ currentPage: index });
+  }
+
   render() {
     let stepComponents = this.props.stepComponents;
 
@@ -105,7 +112,15 @@ export default class StepModal extends Component {
                 height: "90%"
               }}
             >
-              {stepComponents[this.state.currentPage]}
+              <Carousel
+                style={{ width: "100%", height: "100%" }}
+                onAnimateNextPage={this.changeIndex}
+                isLooped={false}
+                autoplay={false}
+                ref={ref => (this.carousel = ref)}
+              >
+                {stepComponents}
+              </Carousel>
               <PageControl
                 style={{ position: "absolute", left: 0, right: 0, bottom: 10 }}
                 numberOfPages={stepComponents.length}
@@ -122,20 +137,22 @@ export default class StepModal extends Component {
             <View
               style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              {this._renderSkipButton()}
+              {
+                this.isLastStep()
+                ? <View />
+                : this._renderSkipButton()
+              }
 
-              {this.isLastStep()
+              {
+                this.isLastStep()
                 ? this._renderFinishButton()
-                : this._renderNextButton()}
+                : this._renderNextButton()
+              }
             </View>
           </View>
         </Modal>
       </View>
     );
-  }
-
-  _renderDotIndicator() {
-    return <PagerDotIndicator pageCount={3} hideSingle={true} />;
   }
 }
 
