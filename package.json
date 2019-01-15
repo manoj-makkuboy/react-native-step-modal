@@ -29,7 +29,7 @@
     "react": "^16.6.3",
     "react-native-modal": "^7.0.0",
     "react-native-page-control": "^1.1.1",
-    "react-native-looped-carousel": "^0.1.13"
+    "react-native-snap-carousel": "^3.7.5"
   },
   "devDependencies": {}
 }
