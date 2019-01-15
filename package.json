@@ -1,6 +1,6 @@
 {
   "name": "react-native-step-modal",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "description": "React native modal with step indicator",
   "main": "index.js",
   "scripts": {
