@@ -107,7 +107,7 @@ export default class StepModal extends Component {
                 backgroundColor: "#ffffff",
                 marginLeft: 10,
                 marginRight: 10,
-                // height: "90%"
+                alignItems: "center",
               }}
             >
               <Carousel
