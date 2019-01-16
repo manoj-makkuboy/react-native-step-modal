@@ -3,13 +3,15 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Platform
+  Dimensions
 } from "react-native";
 import React, { Component } from "react";
 import Modal from "react-native-modal";
-import Carousel from "react-native-looped-carousel";
+import Carousel from "react-native-snap-carousel";
 
 import PageControl from "react-native-page-control";
+
+const { width } = Dimensions.get("window")
 
 export default class StepModal extends Component {
   constructor(props) {
@@ -97,11 +99,7 @@ export default class StepModal extends Component {
       <View>
         <Modal isVisible={this.state.isVisible}>
           <View
-            style={
-              Platform.OS === "android"
-                ? customStyles.modalAndroid
-                : customStyles.modalIOS
-            }
+            style={customStyles.modal}
           >
             <View
               style={{
@@ -109,20 +107,18 @@ export default class StepModal extends Component {
                 backgroundColor: "#ffffff",
                 marginLeft: 10,
                 marginRight: 10,
-                height: "90%"
+                alignItems: "center",
               }}
             >
               <Carousel
-                style={{ width: "100%", height: "100%" }}
-                onAnimateNextPage={this.changeIndex}
-                isLooped={false}
-                autoplay={false}
+                data={stepComponents}
+                renderItem={({ item }) => item}
+                itemWidth={width/1.2}
+                sliderWidth={width/1.2}
                 ref={ref => (this.carousel = ref)}
-              >
-                {stepComponents}
-              </Carousel>
+                onSnapToItem={this.changeIndex}
+              />
               <PageControl
-                style={{ position: "absolute", left: 0, right: 0, bottom: 10 }}
                 numberOfPages={stepComponents.length}
                 currentPage={this.state.currentPage}
                 hidesForSinglePage
@@ -279,16 +275,10 @@ const customStyles = StyleSheet.create({
     textAlign: "left",
     marginLeft: 15
   },
-  modalIOS: {
+  modal: {
     backgroundColor: "#ffffff",
     borderRadius: 8,
     paddingBottom: 10,
-    height: "60%"
+    flex: 0
   },
-  modalAndroid: {
-    backgroundColor: "#ffffff",
-    borderRadius: 8,
-    paddingBottom: 10,
-    height: "80%"
-  }
 });
