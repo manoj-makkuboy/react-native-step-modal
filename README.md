@@ -30,8 +30,8 @@ class Login extends Component {
 ## Authors
 
 * **Manoj Mohan** - *Initial work* - [manoj-makkuboy](https://github.com/manoj-makkuboy)
-* **Mukul Mahajan Singraur** - *Initial work* - [rammmukul](https://github.com/rammmukul)
-* **Saurabh Ramesh Kacholiya** - *Initial work* - [saurabhkacholiya](https://github.com/saurabhkacholiya)
+* **Mukul Mahajan Singraur** - *Add Swipe guesture* - [rammmukul](https://github.com/rammmukul)
+* **Saurabh Ramesh Kacholiya** - *UI fixes* - [saurabhkacholiya](https://github.com/saurabhkacholiya)
 
 ## License
 
