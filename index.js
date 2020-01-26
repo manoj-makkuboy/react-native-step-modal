@@ -17,20 +17,21 @@ export default class StepModal extends Component {
   constructor(props) {
     super(props);
     this.state = { currentPage: 0, isVisible: true };
-    this.onFinish = this.onFinish.bind(this);
-    this.onNext = this.onNext.bind(this);
+    this.onFinishPressed = this.onFinishPressed.bind(this);
+    this.onNextPressed = this.onNextPressed.bind(this);
   }
 
-  onNext() {
+  onNextPressed(nextIndex) {
 
     this.setState({ currentPage: nextIndex });
     this.carousel.snapToItem(nextIndex);
+
     if (typeof this.props.onNext === 'function') {
       this.props.onNext(nextIndex);
-    }
-
+    }    
   }
-  onFinish() {
+
+  onFinishPressed() {
     this.setState({ isVisible: false });
 
     if (typeof this.props.onFinish === 'function') {
@@ -47,7 +48,7 @@ export default class StepModal extends Component {
         }}
       >
         <TouchableOpacity
-          onPress={onNext}
+          onPress={() => this.onNextPressed(nextIndex)}
         >
           <Text style={{ color: "#60bca5", fontWeight: "bold", fontSize: 14 }}>
             {" "}
@@ -66,7 +67,7 @@ export default class StepModal extends Component {
         }}
       >
         <TouchableOpacity
-          onPress={onFinish}
+          onPress={() => this.onFinishPressed()}
         >
           <Text style={{ color: "#60bca5", fontWeight: "bold", fontSize: 14 }}>
             {" "}
